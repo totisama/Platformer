@@ -7,12 +7,15 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 7f;
     [SerializeField] float jumpForce = 14f;
+    [SerializeField] LayerMask jumpableGround;
 
     float horizontalMovement;
     bool jump;
+
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
     Animator animator;
+    BoxCollider2D coll;
 
     private enum Animations {
         Idle,
@@ -26,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        coll = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -33,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             jump = true;
         }
@@ -95,5 +99,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetInteger("currentAnimation", (int) currentAnimation);
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, Vector2.down, .1f, jumpableGround);
     }
 }
