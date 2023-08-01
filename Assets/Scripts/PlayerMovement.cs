@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] float moveSpeed = 7f;
+
+    [Header("Jump")]
     [SerializeField] float jumpForce = 14f;
+
+    [Header("Ground Check")]
+    [SerializeField] float extraHeight = 0.25f;
     [SerializeField] LayerMask jumpableGround;
 
     float horizontalMovement;
@@ -19,9 +24,9 @@ public class PlayerMovement : MonoBehaviour
 
     private enum Animations {
         Idle,
-        Running,
-        Jumping,
-        Falling
+        Run,
+        Jump,
+        Fall
     };
 
     void Awake()
@@ -71,16 +76,10 @@ public class PlayerMovement : MonoBehaviour
         Animations currentAnimation;
 
         //Running conditions
-        if (horizontalMovement < 0f)
+        if (horizontalMovement < 0f || horizontalMovement > 0f)
         {
-            currentAnimation = Animations.Running;
-            spriteRenderer.flipX = true;
-
-        }
-        else if (horizontalMovement > 0f)
-        {
-            currentAnimation = Animations.Running;
-            spriteRenderer.flipX = false;
+            FlipPlayer();
+            currentAnimation = Animations.Run;
         }
         else
         {
@@ -90,11 +89,11 @@ public class PlayerMovement : MonoBehaviour
         //Jumping conditions
         if (rigidBody.velocity.y > 0.1f)
         {
-            currentAnimation = Animations.Jumping;
+            currentAnimation = Animations.Jump;
         }
         else if (rigidBody.velocity.y < -0.1f)
         {
-            currentAnimation = Animations.Falling;
+            currentAnimation = Animations.Fall;
 
         }
 
@@ -103,6 +102,18 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, Vector2.down, .1f, jumpableGround);
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, extraHeight, jumpableGround);
+    }
+
+    private void FlipPlayer()
+    {
+        if (horizontalMovement < 0f)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (horizontalMovement > 0f)
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }
