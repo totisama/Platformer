@@ -2,23 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float moveSpeed = 7f;
+    [SerializeField] private float moveSpeed = 7f;
 
     [Header("Jump")]
-    [SerializeField] float jumpForce = 14f;
+    [SerializeField] private float jumpForce = 14f;
 
     [Header("Ground Check")]
-    [SerializeField] float extraHeight = 0.25f;
-    [SerializeField] LayerMask jumpableGround;
+    [SerializeField] private float extraHeight = 0.25f;
+    [SerializeField] private LayerMask jumpableGround;
 
-    float horizontalMovement;
-    bool jump;
+    [Header("Attack")]
+    [SerializeField] private float fireRate = 1.0f;
+    private float nextFire;
+
+
+    private float horizontalMovement;
+    private bool jump;
+    [HideInInspector]
+    public bool isAttacking;
 
     Rigidbody2D rigidBody;
-    SpriteRenderer spriteRenderer;
     Animator animator;
     BoxCollider2D coll;
 
@@ -26,13 +32,13 @@ public class PlayerMovement : MonoBehaviour
         Idle,
         Run,
         Jump,
-        Fall
+        Fall,
+        Attack
     };
 
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
     }
@@ -42,9 +48,15 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !isAttacking)
         {
             jump = true;
+        }
+
+        if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            isAttacking = true;
         }
 
         UpdateAnimation();
@@ -52,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         MovePlayer();
 
         if (jump)
@@ -62,7 +75,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        rigidBody.velocity = new Vector2(horizontalMovement * moveSpeed, rigidBody.velocity.y);
+        if (!isAttacking || (isAttacking && !IsGrounded()))
+        {
+            rigidBody.velocity = new Vector2(horizontalMovement * moveSpeed, rigidBody.velocity.y);
+        }
+        else
+        {
+            rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
+        }
     }
     
     private void Jump()
@@ -97,7 +117,16 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        animator.SetInteger("currentAnimation", (int) currentAnimation);
+        //Attack conditions
+        if (isAttacking)
+        {
+            currentAnimation = Animations.Attack;
+        }
+
+        if(animator.GetInteger("currentAnimation") != (int) currentAnimation)
+        {
+            animator.SetInteger("currentAnimation", (int) currentAnimation);
+        }
     }
 
     private bool IsGrounded()
@@ -109,11 +138,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (horizontalMovement < 0f)
         {
-            spriteRenderer.flipX = true;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else if (horizontalMovement > 0f)
         {
-            spriteRenderer.flipX = false;
+            transform.rotation = Quaternion.identity;
         }
     }
 }
