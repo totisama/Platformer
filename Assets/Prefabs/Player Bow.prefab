@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6926003601964523768}
   m_Layer: 0
   m_Name: Player Bow
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,11 +198,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   jumpForce: 10
-  extraHeight: 0.25
+  extraHeight: 0.1
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
-  attack: 0
+  fireRate: 1
+  isAttacking: 0
 --- !u!114 &7077949166019877510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebcfc46bd934ae43bed998528e7897d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 100
 --- !u!114 &6926003601964523768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 4281916182297548541, guid: 8b9178a6a9dc41e45969f5392e675059, type: 3}
   arrowSpawnPoint: {fileID: 3964032893740791083}
-  shotForce: 5
 --- !u!1 &6540462120294002206
 GameObject:
   m_ObjectHideFlags: 0
