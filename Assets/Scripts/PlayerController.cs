@@ -16,9 +16,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack")]
     [SerializeField] private float fireRate = 1.0f;
+
     private float nextFire;
-
-
     private float horizontalMovement;
     private bool jump;
     [HideInInspector]
@@ -64,7 +63,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         MovePlayer();
 
         if (jump)
@@ -79,8 +77,9 @@ public class PlayerController : MonoBehaviour
         {
             rigidBody.velocity = new Vector2(horizontalMovement * moveSpeed, rigidBody.velocity.y);
         }
-        else
+        else if ((horizontalMovement < 0f || horizontalMovement > 0f) && isAttacking)
         {
+            // Set x velovity to 0 when the player is moving and star
             rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
         }
     }
