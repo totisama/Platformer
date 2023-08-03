@@ -130,11 +130,13 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         rb.velocity = new Vector2(-direction.x * moveSpeed, rb.velocity.y);
     }
 
+    // Function called in an animation event
     private void StartEnemyAttack()
     {
         attacking = true;
     }
 
+    // Function called in an animation event
     private void EndEnemyAttack()
     {
         StartCoroutine(SlowSpeed());
@@ -183,19 +185,7 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Vector2 normal = collision.GetContact(0).normal;
-            //Debug.Log(normal);
-
-            //if (normal.x <= 0.2f && normal.x > -0.2f)
-            //{
-            //    normal.x = 1f;
-            //}
-            //else if (normal.x >= -0.2f)
-            //{
-            //    normal.x = -1f;
-            //}
-
-            playerHealth.TakeDamage(damage, normal);
+            playerHealth.TakeDamage(damage, transform.position);
         }
     }
 
