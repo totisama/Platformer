@@ -90,7 +90,7 @@ public class BulletBehavior : MonoBehaviour
             if (iDamageable != null)
             {
                 //Damage enemy
-                iDamageable.TakeDamage(bulletDamage);
+                iDamageable.TakeDamage(bulletDamage, transform.position);
             }
 
             Destroy(gameObject);

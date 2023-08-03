@@ -113,7 +113,7 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector2 damageDirection)
     {
         health -= damage;
 
@@ -127,7 +127,7 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerHealth.TakeDamage(damage);
+            playerHealth.TakeDamage(damage, transform.position);
         }
     }
 }

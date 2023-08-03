@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 7f;
+    public bool canMove = true;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 14f;
@@ -63,7 +64,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (canMove)
+        {
+            MovePlayer();
+        }
 
         if (jump)
         {
@@ -135,11 +139,11 @@ public class PlayerController : MonoBehaviour
 
     private void FlipPlayer()
     {
-        if (horizontalMovement < 0f)
+        if (horizontalMovement < 0f && canMove)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-        else if (horizontalMovement > 0f)
+        else if (horizontalMovement > 0f && canMove)
         {
             transform.rotation = Quaternion.identity;
         }
