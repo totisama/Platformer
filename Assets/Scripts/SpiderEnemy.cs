@@ -16,12 +16,18 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
     [Header("Behavior")]
     [SerializeField] private float seekDistance = 7f;
     [SerializeField] private float attackDistance = 2f;
+    [SerializeField] private float timeToRecoverSpeed = 1f;
 
     [Header("Player")]
     [SerializeField] private PlayerHealth playerHealth;
 
     private Vector2 idlePosition;
+    private bool attacking = false;
+    private float initialSpeed;
+    private EnemyStates enemyState;
+
     private Animator animator;
+    private Rigidbody2D rb;
 
     private enum Animations
     {
@@ -30,42 +36,68 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         Attack
     };
 
+    private enum EnemyStates
+    {
+        ToIdle,
+        Idle,
+        Seeking,
+        Attacking
+    }
+
     private void Start()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+
         idlePosition = transform.position;
+        initialSpeed = moveSpeed;
     }
 
     private void Update()
     {
-        float sqrDistanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
-        Animations newAnimation = Animations.Run;
+        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
-        if (sqrDistanceToPlayer <= attackDistance)
+        if (distanceToPlayer <= attackDistance || attacking)
         {
-            Attack();
-            newAnimation = Animations.Attack;
+            enemyState = EnemyStates.Attacking;
         }
-        else if(sqrDistanceToPlayer <= seekDistance)
+        else if(distanceToPlayer <= seekDistance)
         {
-            FlipScale(playerTransform.position);
-            SeekPlayer();
+            enemyState = EnemyStates.Seeking;
         }
         else
         {
             if (Vector2.Distance(transform.position, idlePosition) <= 0.5f)
             {
-                newAnimation = Animations.Idle;
+                enemyState = EnemyStates.Idle;
+                transform.position = idlePosition;
                 FlipScale(playerTransform.position);
             }
             else
             {
-                FlipScale(idlePosition);
-                BackToIdlePosition();
+                enemyState = EnemyStates.ToIdle;
             }
         }
-        
-        UpdateAnimation(newAnimation);
+
+        UpdateAnimation();
+    }
+
+    private void FixedUpdate()
+    {
+        if (enemyState == EnemyStates.Attacking && !attacking)
+        {
+            //Attack();
+        }
+        else if (enemyState == EnemyStates.Seeking)
+        {
+            Move();
+            FlipScale(playerTransform.position);
+        }
+        else if (enemyState == EnemyStates.ToIdle)
+        {
+            BackToIdlePosition();
+            FlipScale(idlePosition);
+        }
     }
 
     private void FlipScale(Vector3 target)
@@ -86,27 +118,51 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
 
     private void BackToIdlePosition()
     {
-        transform.position = Vector2.MoveTowards(transform.position, idlePosition, moveSpeed * Time.deltaTime);
+        Vector2 direction = ((Vector2)transform.position - idlePosition).normalized;
+
+        rb.velocity = new Vector2(-direction.x * moveSpeed, rb.velocity.y);
     }
 
-    private void Attack()
+    private void Move()
     {
+        Vector2 direction = (transform.position - playerTransform.position).normalized;
+
+        rb.velocity = new Vector2(-direction.x * moveSpeed, rb.velocity.y);
     }
 
-    private void SeekPlayer()
+    private void StartEnemyAttack()
     {
-        if (transform.position.x > playerTransform.position.x)
+        attacking = true;
+    }
+
+    private void EndEnemyAttack()
+    {
+        StartCoroutine(SlowSpeed());
+        attacking = false;
+        rb.velocity = new Vector2(0f, rb.velocity.y);
+    }
+
+    private void UpdateAnimation()
+    {
+        Animations newAnimation = Animations.Idle;
+
+        if (enemyState == EnemyStates.Attacking)
         {
-            transform.position += moveSpeed * Time.deltaTime * Vector3.left;
+            newAnimation = Animations.Attack;
         }
-        else
+        else if (enemyState == EnemyStates.Seeking)
         {
-            transform.position += moveSpeed * Time.deltaTime * Vector3.right;
+            newAnimation = Animations.Run;
         }
-    }
+        else if (enemyState == EnemyStates.ToIdle)
+        {
+            newAnimation = Animations.Run;
+        }
+        else if (enemyState == EnemyStates.Idle)
+        {
+            newAnimation = Animations.Idle;
+        }
 
-    private void UpdateAnimation(Animations newAnimation)
-    {
         if (animator.GetInteger("currentAnimation") != (int)newAnimation)
         {
             animator.SetInteger("currentAnimation", (int)newAnimation);
@@ -127,7 +183,27 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerHealth.TakeDamage(damage, transform.position);
+            Vector2 normal = collision.GetContact(0).normal;
+            //Debug.Log(normal);
+
+            //if (normal.x <= 0.2f && normal.x > -0.2f)
+            //{
+            //    normal.x = 1f;
+            //}
+            //else if (normal.x >= -0.2f)
+            //{
+            //    normal.x = -1f;
+            //}
+
+            playerHealth.TakeDamage(damage, normal);
         }
+    }
+
+    private IEnumerator SlowSpeed()
+    {
+        moveSpeed = initialSpeed / 2;
+        yield return new WaitForSeconds(timeToRecoverSpeed);
+        moveSpeed = initialSpeed;
+        attacking = false;
     }
 }

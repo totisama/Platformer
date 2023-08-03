@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5141137768500414879}
   m_Layer: 8
   m_Name: Spider
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,4 +189,5 @@ MonoBehaviour:
   moveSpeed: 5
   seekDistance: 7
   attackDistance: 2
+  timeToSeek: 1
   playerHealth: {fileID: 0}

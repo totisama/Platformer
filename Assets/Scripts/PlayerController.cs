@@ -67,11 +67,11 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             MovePlayer();
-        }
 
-        if (jump)
-        {
-            Jump();
+            if (jump)
+            {
+                Jump();
+            }
         }
     }
 

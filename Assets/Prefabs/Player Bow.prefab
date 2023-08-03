@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2422247275344107205}
   - component: {fileID: 7077949166019877510}
   - component: {fileID: 6926003601964523768}
+  - component: {fileID: 239706743337690911}
   m_Layer: 0
   m_Name: Player Bow
   m_TagString: Player
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
+  canMove: 1
   jumpForce: 10
   extraHeight: 0.1
   jumpableGround:
@@ -216,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebcfc46bd934ae43bed998528e7897d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  timeToMove: 1
 --- !u!114 &6926003601964523768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +234,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 4281916182297548541, guid: 8b9178a6a9dc41e45969f5392e675059, type: 3}
   arrowSpawnPoint: {fileID: 3964032893740791083}
+--- !u!114 &239706743337690911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632919398140164916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d304d3c000de6c4eab38dda5bb45f04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackForce: {x: 10, y: 5}
 --- !u!1 &6540462120294002206
 GameObject:
   m_ObjectHideFlags: 0

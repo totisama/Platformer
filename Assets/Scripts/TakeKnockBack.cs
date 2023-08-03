@@ -15,6 +15,6 @@ public class TakeKnockBack : MonoBehaviour
 
     public void KnockBack(Vector2 direction)
     {
-        rb.velocity = new Vector2(knockBackForce.x * direction.normalized.x, knockBackForce.y);
+        rb.velocity = new Vector2(-knockBackForce.x * direction.x, knockBackForce.y);
     }
 }
