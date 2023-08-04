@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  timeToMove: 1
+  timeToMove: 0.8
 --- !u!114 &6926003601964523768
 MonoBehaviour:
   m_ObjectHideFlags: 0
