@@ -190,7 +190,7 @@ MonoBehaviour:
   healthSlider: {fileID: 6176190249922743321}
   rectTransform: {fileID: 7814780007426984907}
   canvas: {fileID: 8406079214294535476}
-  seekDistance: 7
+  seekDistance: 8
   attackDistance: 2
   timeToRecoverSpeed: 1
   playerTransform: {fileID: 0}
@@ -261,19 +261,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6990679622231272450, guid: ce9018e69258c634ab857903eb835119, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6990679622231272450, guid: ce9018e69258c634ab857903eb835119, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6990679622231272450, guid: ce9018e69258c634ab857903eb835119, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6990679622231272450, guid: ce9018e69258c634ab857903eb835119, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6990679622231272450, guid: ce9018e69258c634ab857903eb835119, type: 3}
       propertyPath: m_AnchoredPosition.x

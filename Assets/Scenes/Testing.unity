@@ -4352,17 +4352,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &369658257 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3030130278865549118, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
-  m_PrefabInstance: {fileID: 985634764522465455}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &378658987
 GameObject:
   m_ObjectHideFlags: 0
@@ -4794,21 +4783,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1129244409384380067, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2632919398140164916, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
       propertyPath: m_Name
       value: Player Bow
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
-      propertyPath: heartImage
-      value: 
-      objectReference: {fileID: 369658257}
-    - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
-      propertyPath: timeToMove
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
       propertyPath: healthSlider
@@ -4828,41 +4805,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5141137768500414879, guid: faf9a0af39ba9f948be609a2b051536d, type: 3}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5141137768500414879, guid: faf9a0af39ba9f948be609a2b051536d, type: 3}
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 1380535876}
     - target: {fileID: 5141137768500414879, guid: faf9a0af39ba9f948be609a2b051536d, type: 3}
-      propertyPath: seekDistance
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5141137768500414879, guid: faf9a0af39ba9f948be609a2b051536d, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 951770222}
-    - target: {fileID: 5470159526649160768, guid: faf9a0af39ba9f948be609a2b051536d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5470159526649160768, guid: faf9a0af39ba9f948be609a2b051536d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5470159526649160768, guid: faf9a0af39ba9f948be609a2b051536d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5470159526649160768, guid: faf9a0af39ba9f948be609a2b051536d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6343566559165090211, guid: faf9a0af39ba9f948be609a2b051536d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7919546139859988797, guid: faf9a0af39ba9f948be609a2b051536d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.9
