@@ -24,10 +24,13 @@ public class BulletBehavior : MonoBehaviour
         physics
     }
 
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
 
+    void Start()
+    {
         InitializeBullet();
         SetRBStats();
         DestroyBullet();
