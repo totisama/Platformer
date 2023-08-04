@@ -63,14 +63,16 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canMove)
+        if (!canMove)
         {
-            MovePlayer();
+            return;
+        }
 
-            if (jump)
-            {
-                Jump();
-            }
+        MovePlayer();
+
+        if (jump)
+        {
+            Jump();
         }
     }
 
