@@ -15,9 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float extraHeight = 0.25f;
     [SerializeField] private LayerMask jumpableGround;
 
-    [Header("Attack")]
-    [SerializeField] private float fireRate = 1.0f;
-
     private float nextFire;
     private float horizontalMovement;
     private bool jump;
@@ -27,6 +24,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidBody;
     Animator animator;
     BoxCollider2D coll;
+    PlayerAttack playerAttack;
 
     private enum Animations {
         Idle,
@@ -41,6 +39,7 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
+        playerAttack = GetComponent<PlayerAttack>();
     }
 
     // Update is called once per frame
@@ -55,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
         {
-            nextFire = Time.time + fireRate;
+            nextFire = Time.time + playerAttack.fireRate;
             isAttacking = true;
         }
 
@@ -82,8 +81,8 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity = new Vector2(horizontalMovement * moveSpeed, rigidBody.velocity.y);
         }
         else if ((horizontalMovement < 0f || horizontalMovement > 0f) && isAttacking)
-        {
-            // Set x velovity to 0 when the player is moving and star
+        { 
+            // Set x velocity to 0 when the player is moving and attacking
             rigidBody.velocity = new Vector2(0f, rigidBody.velocity.y);
         }
     }

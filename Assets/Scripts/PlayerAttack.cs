@@ -6,11 +6,11 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private GameObject arrow;
     [SerializeField] private Transform arrowSpawnPoint;
+    public float fireRate = 1f;
 
     private PlayerController controller;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         controller = GetComponent<PlayerController>();
     }
