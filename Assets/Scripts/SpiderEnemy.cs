@@ -1,19 +1,15 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class SpiderEnemy : MonoBehaviour, IDamageable
+public class SpiderEnemy : MonoBehaviour
 {
     [Header("General")]
     [SerializeField] private float damage = 20f;
-    [SerializeField] private float health = 100f;
     [SerializeField] private float moveSpeed = 5f;
 
     [Header("Canvas")]
-    [SerializeField] private Slider healthSlider;
     [SerializeField] private RectTransform rectTransform;
-    [SerializeField] private Canvas canvas;
 
     [Header("Behavior")]
     [SerializeField] private float seekDistance = 7f;
@@ -26,12 +22,12 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
 
     private Vector2 idlePosition;
     private bool attacking = false;
-    private bool alive = true;
     private float initialSpeed;
     private EnemyStates enemyState;
 
     private Animator animator;
     private Rigidbody2D rb;
+    private EnemyHealth enemyHealth;
 
     private enum Animations
     {
@@ -52,48 +48,47 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     private void Start()
     {
         idlePosition = transform.position;
         initialSpeed = moveSpeed;
-
-        // Slider properties
-        healthSlider.value = health;
-        healthSlider.maxValue = health;
     }
 
     private void Update()
     {
+        if (enemyHealth.health <= 0f)
+        {
+            return;
+        }
+
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
-        if (alive)
+        if (distanceToPlayer <= attackDistance || attacking)
         {
-            if (distanceToPlayer <= attackDistance || attacking)
+            enemyState = EnemyStates.Attacking;
+        }
+        else if (distanceToPlayer <= seekDistance)
+        {
+            enemyState = EnemyStates.Seeking;
+        }
+        else
+        {
+            if (Vector2.Distance(transform.position, idlePosition) <= 0.5f)
             {
-                enemyState = EnemyStates.Attacking;
-            }
-            else if (distanceToPlayer <= seekDistance)
-            {
-                enemyState = EnemyStates.Seeking;
+                enemyState = EnemyStates.Idle;
+                transform.position = idlePosition;
+                FlipScale(playerTransform.position);
             }
             else
             {
-                if (Vector2.Distance(transform.position, idlePosition) <= 0.5f)
-                {
-                    enemyState = EnemyStates.Idle;
-                    transform.position = idlePosition;
-                    FlipScale(playerTransform.position);
-                }
-                else
-                {
-                    enemyState = EnemyStates.ToIdle;
-                }
+                enemyState = EnemyStates.ToIdle;
             }
-
-            UpdateAnimation();
         }
+
+        UpdateAnimation();
     }
 
     private void FixedUpdate()
@@ -184,26 +179,6 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         {
             animator.SetInteger("currentAnimation", (int)newAnimation);
         }
-    }
-
-    public void TakeDamage(float damage, Vector2 damageDirection)
-    {
-        health -= damage;
-        healthSlider.value = health;
-
-        if (health <= 0)
-        {
-            alive = false;
-            rb.simulated = false;
-            canvas.enabled = false;
-            animator.SetTrigger("death");
-        }
-    }
-
-    // Function called in an animation event
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
