@@ -1,17 +1,19 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class SpiderEnemy : MonoBehaviour, IDamageable
 {
     [Header("General")]
-    [SerializeField] private Transform playerTransform;
     [SerializeField] private float damage = 20f;
     [SerializeField] private float health = 100f;
     [SerializeField] private float moveSpeed = 5f;
+
+    [Header("Canvas")]
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private Canvas canvas;
 
     [Header("Behavior")]
     [SerializeField] private float seekDistance = 7f;
@@ -19,10 +21,12 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
     [SerializeField] private float timeToRecoverSpeed = 1f;
 
     [Header("Player")]
+    [SerializeField] private Transform playerTransform;
     [SerializeField] private PlayerHealth playerHealth;
 
     private Vector2 idlePosition;
     private bool attacking = false;
+    private bool alive = true;
     private float initialSpeed;
     private EnemyStates enemyState;
 
@@ -44,42 +48,52 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
         Attacking
     }
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+    }
 
+    private void Start()
+    {
         idlePosition = transform.position;
         initialSpeed = moveSpeed;
+
+        // Slider properties
+        healthSlider.value = health;
+        healthSlider.maxValue = health;
     }
 
     private void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
-        if (distanceToPlayer <= attackDistance || attacking)
+        if (alive)
         {
-            enemyState = EnemyStates.Attacking;
-        }
-        else if(distanceToPlayer <= seekDistance)
-        {
-            enemyState = EnemyStates.Seeking;
-        }
-        else
-        {
-            if (Vector2.Distance(transform.position, idlePosition) <= 0.5f)
+            if (distanceToPlayer <= attackDistance || attacking)
             {
-                enemyState = EnemyStates.Idle;
-                transform.position = idlePosition;
-                FlipScale(playerTransform.position);
+                enemyState = EnemyStates.Attacking;
+            }
+            else if (distanceToPlayer <= seekDistance)
+            {
+                enemyState = EnemyStates.Seeking;
             }
             else
             {
-                enemyState = EnemyStates.ToIdle;
+                if (Vector2.Distance(transform.position, idlePosition) <= 0.5f)
+                {
+                    enemyState = EnemyStates.Idle;
+                    transform.position = idlePosition;
+                    FlipScale(playerTransform.position);
+                }
+                else
+                {
+                    enemyState = EnemyStates.ToIdle;
+                }
             }
-        }
 
-        UpdateAnimation();
+            UpdateAnimation();
+        }
     }
 
     private void FixedUpdate()
@@ -113,6 +127,7 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
             scale.x = Mathf.Abs(scale.x);
         }
 
+        rectTransform.localScale = scale;
         transform.localScale = scale;
     }
 
@@ -174,11 +189,21 @@ public class SpiderEnemy : MonoBehaviour, IDamageable
     public void TakeDamage(float damage, Vector2 damageDirection)
     {
         health -= damage;
+        healthSlider.value = health;
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            alive = false;
+            rb.simulated = false;
+            canvas.enabled = false;
+            animator.SetTrigger("death");
         }
+    }
+
+    // Function called in an animation event
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

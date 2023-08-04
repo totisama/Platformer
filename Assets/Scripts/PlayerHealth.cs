@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float timeToMove = 1f;
+    [SerializeField] private Slider healthSlider;
     private float health;
 
     private Animator animator;
@@ -17,20 +19,25 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         get { return health; }
         private set { health = value; }
     }
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         animator = GetComponent<Animator>();
         playerController = GetComponent<PlayerController>();
         takeKnockBack = GetComponent<TakeKnockBack>();
+    }
 
+    private void Start()
+    {
         health = maxHealth;
+        healthSlider.value = maxHealth;
     }
 
     public void TakeDamage(float damage, Vector2 damageDirection)
     {
         takeKnockBack.KnockBack(damageDirection);
         Health -= damage;
+        healthSlider.value = Health;
 
         if (Health <= 0)
         {
