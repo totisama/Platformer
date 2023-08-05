@@ -12,10 +12,10 @@ public class BulletBehavior : MonoBehaviour
 
     [Header("Normal Stats")]
     [SerializeField] private float normalBulletSpeed = 15f;
-    [SerializeField] private float bulletGravity = 3f;
 
     [Header("Physics Stats")]
     [SerializeField] private float physicsBulletSpeed = 15f;
+    [SerializeField] private float bulletGravity = 3f;
 
     private Rigidbody2D rb;
     private enum BulletType
