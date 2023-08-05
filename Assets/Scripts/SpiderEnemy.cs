@@ -113,7 +113,7 @@ public class SpiderEnemy : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
 
-        if (target.x > transform.position.x)
+        if (target.x < transform.position.x)
         {
             scale.x = Mathf.Abs(scale.x) * -1;
         }

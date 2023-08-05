@@ -16,6 +16,11 @@ public class BulletBehavior : MonoBehaviour
     [Header("Physics Stats")]
     [SerializeField] private float physicsBulletSpeed = 15f;
     [SerializeField] private float bulletGravity = 3f;
+    [SerializeField] private float maxHeight = 3f;
+
+    public float PhysicsBulletSpeed { get { return physicsBulletSpeed; } private set { maxHeight = value; } }
+    public float BulletGravity { get { return bulletGravity; } private set { bulletGravity = value; } }
+    public float MaxHeight { get { return maxHeight; } private set { maxHeight = value; } }
 
     private Rigidbody2D rb;
     private enum BulletType
@@ -31,7 +36,6 @@ public class BulletBehavior : MonoBehaviour
 
     void Start()
     {
-        InitializeBullet();
         SetRBStats();
         DestroyBullet();
     }
@@ -44,36 +48,16 @@ public class BulletBehavior : MonoBehaviour
         }
     }
 
-    private void InitializeBullet()
-    {
-        if (bulletType == BulletType.normal)
-        {
-            SetStraightVelocity();
-        }
-        else if (bulletType == BulletType.physics)
-        {
-            SetPhysicsVelocity();
-        }
-    }
-
-    private void SetStraightVelocity()
-    {
-        rb.velocity = transform.right * normalBulletSpeed;
-    }
-    
-    private void SetPhysicsVelocity()
-    {
-        rb.velocity = transform.right * physicsBulletSpeed;
-    }
-    
     private void SetRBStats()
     {
         if (bulletType == BulletType.normal)
         {
+            rb.velocity = transform.right * normalBulletSpeed;
             rb.gravityScale = 0f;
         }
         else if (bulletType == BulletType.physics)
         {
+            rb.velocity = transform.right * physicsBulletSpeed;
             rb.gravityScale = bulletGravity;
         }
     }

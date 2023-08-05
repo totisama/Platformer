@@ -6,12 +6,18 @@ public class WaypointsFollower : MonoBehaviour
 {
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private float moveSpeed;
+    public bool canMove = true;
 
     private int currentWaypointIndex = 0;
 
     // Update is called once per frame
     void Update()
     {
+        if(!canMove)
+        {
+            return;
+        }
+
         if (Vector2.Distance(waypoints[currentWaypointIndex].position, transform.position) <= 0.1f)
         {
             currentWaypointIndex++;
@@ -27,7 +33,7 @@ public class WaypointsFollower : MonoBehaviour
         FlipScale(target);
     }
 
-    private void FlipScale(Vector3 target)
+    public void FlipScale(Vector3 target)
     {
         Vector3 scale = transform.localScale;
 
