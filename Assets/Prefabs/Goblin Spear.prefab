@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 7728840979592943902}
   - component: {fileID: 5561880677600313402}
   - component: {fileID: 8605995819705854277}
-  - component: {fileID: 1802955395036758203}
   - component: {fileID: 5272758385079516033}
   - component: {fileID: 1547650428328839618}
   - component: {fileID: 1112376048084780071}
+  - component: {fileID: 3452673729505737812}
   m_Layer: 8
   m_Name: Goblin Spear
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,6 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5043660600432717787}
+  - {fileID: 1539918057562862370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5561880677600313402
@@ -125,33 +126,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.017263412, y: -0.051793337}
   m_Size: {x: 0.9793892, y: 1.3937383}
   m_Direction: 0
---- !u!50 &1802955395036758203
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4007055587664363849}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 6
 --- !u!95 &5272758385079516033
 Animator:
   serializedVersion: 5
@@ -185,6 +159,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4547ac0653a63134d821046f6dc90751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  rectTransform: {fileID: 7090049616079093840}
+  attackDistance: 15
+  collisionDamage: 10
+  spear: {fileID: 7478659675831776453, guid: 03f31b427c461934d9cf6c3ce2ba3c12, type: 3}
+  spearSpawnPoint: {fileID: 1539918057562862370}
+  rotation: {x: 0, y: 0, z: 30}
+  playerTransform: {fileID: 0}
+  playerHealth: {fileID: 0}
 --- !u!114 &1112376048084780071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +183,53 @@ MonoBehaviour:
   health: 100
   healthSlider: {fileID: 6602694609190045570}
   canvas: {fileID: 8844826738683446959}
+--- !u!114 &3452673729505737812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4007055587664363849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c546747fa6140ce458905ddc335efbe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  moveSpeed: 5
+--- !u!1 &4056160550083788035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1539918057562862370}
+  m_Layer: 8
+  m_Name: spearSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1539918057562862370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4056160550083788035}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.419, y: 0.182, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7728840979592943902}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2665370684255159257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -341,6 +371,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &7090049616079093840 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5087279826097587081, guid: ce9018e69258c634ab857903eb835119, type: 3}
+  m_PrefabInstance: {fileID: 2665370684255159257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!223 &8844826738683446959 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 6792113841269261686, guid: ce9018e69258c634ab857903eb835119, type: 3}
