@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1112376048084780071}
   - component: {fileID: 3452673729505737812}
   m_Layer: 8
-  m_Name: Goblin Spear
+  m_Name: Spear Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,13 +159,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4547ac0653a63134d821046f6dc90751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  collisionDamage: 10
   rectTransform: {fileID: 7090049616079093840}
   attackDistance: 15
-  collisionDamage: 10
   spear: {fileID: 7478659675831776453, guid: 03f31b427c461934d9cf6c3ce2ba3c12, type: 3}
   spearSpawnPoint: {fileID: 1539918057562862370}
   rotation: {x: 0, y: 0, z: 30}
+  timeToAttack: 2
   playerTransform: {fileID: 0}
   playerHealth: {fileID: 0}
 --- !u!114 &1112376048084780071
@@ -199,6 +199,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   moveSpeed: 5
+  canMove: 1
 --- !u!1 &4056160550083788035
 GameObject:
   m_ObjectHideFlags: 0

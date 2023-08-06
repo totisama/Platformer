@@ -4751,7 +4751,7 @@ PrefabInstance:
       objectReference: {fileID: 1203344660}
     - target: {fileID: 4007055587664363849, guid: 2708cb85724c71c44ac38810d92f2190, type: 3}
       propertyPath: m_Name
-      value: Goblin Spear
+      value: Spear Goblin
       objectReference: {fileID: 0}
     - target: {fileID: 7728840979592943902, guid: 2708cb85724c71c44ac38810d92f2190, type: 3}
       propertyPath: m_LocalPosition.x
