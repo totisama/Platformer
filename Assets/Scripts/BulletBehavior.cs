@@ -78,6 +78,7 @@ public class BulletBehavior : MonoBehaviour
             {
                 //Damage enemy
                 iDamageable.TakeDamage(bulletDamage, transform.position);
+                AudioManager.Instance.PlaySFXSound("hit");
             }
 
             Destroy(gameObject);

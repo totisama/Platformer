@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
+        AudioManager.Instance.PlaySFXSound("jump");
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
         jump = false;
     }

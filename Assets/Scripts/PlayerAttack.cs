@@ -17,6 +17,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
+        AudioManager.Instance.PlaySFXSound("arrowShot");
         Instantiate(arrow, arrowSpawnPoint.position, transform.rotation);
         controller.isAttacking = false;
     }

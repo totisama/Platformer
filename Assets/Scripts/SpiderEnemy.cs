@@ -143,6 +143,7 @@ public class SpiderEnemy : MonoBehaviour
     // Function called in an animation event
     private void StartEnemyAttack()
     {
+        AudioManager.Instance.PlaySFXSound("spiderAttack");
         attacking = true;
     }
 
