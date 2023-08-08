@@ -8,6 +8,9 @@ public class WaypointsFollower : MonoBehaviour
     [SerializeField] private float moveSpeed;
     public bool canMove = true;
 
+    [Header("Canvas")]
+    [SerializeField] private RectTransform rectTransform;
+
     private int currentWaypointIndex = 0;
 
     // Update is called once per frame
@@ -47,5 +50,10 @@ public class WaypointsFollower : MonoBehaviour
         }
 
         transform.localScale = scale;
+
+        if (rectTransform)
+        {
+            rectTransform.localScale = scale;
+        }
     }
 }

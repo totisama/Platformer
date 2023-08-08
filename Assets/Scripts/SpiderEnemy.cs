@@ -122,7 +122,7 @@ public class SpiderEnemy : MonoBehaviour
             scale.x = Mathf.Abs(scale.x);
         }
 
-        rectTransform.localScale = scale;
+        rectTransform.localScale = -scale;
         transform.localScale = scale;
     }
 
