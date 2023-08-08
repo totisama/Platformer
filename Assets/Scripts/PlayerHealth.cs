@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private Animator animator;
     private PlayerController playerController;
     private TakeKnockBack takeKnockBack;
+    private Rigidbody2D rb;
 
     public float Health
     {
@@ -25,6 +26,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
         playerController = GetComponent<PlayerController>();
         takeKnockBack = GetComponent<TakeKnockBack>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -52,6 +54,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void Die()
     {
         playerController.canMove = false;
+        rb.simulated = false;
         animator.SetTrigger("death");
     }
 
