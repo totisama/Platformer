@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float extraHeight = 0.25f;
     [SerializeField] private LayerMask jumpableGround;
 
-    private float nextFire;
     private float horizontalMovement;
     private bool jump;
     [HideInInspector]
@@ -24,7 +23,6 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidBody;
     Animator animator;
     BoxCollider2D coll;
-    PlayerAttack playerAttack;
 
     private enum Animations {
         Idle,
@@ -39,7 +37,6 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
-        playerAttack = GetComponent<PlayerAttack>();
     }
 
     // Update is called once per frame
@@ -50,12 +47,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !isAttacking)
         {
             jump = true;
-        }
-
-        if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
-        {
-            nextFire = Time.time + playerAttack.fireRate;
-            isAttacking = true;
         }
 
         UpdateAnimation();

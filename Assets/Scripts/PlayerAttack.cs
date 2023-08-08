@@ -9,10 +9,20 @@ public class PlayerAttack : MonoBehaviour
     public float fireRate = 1f;
 
     private PlayerController controller;
+    private float nextFire;
 
     void Awake()
     {
         controller = GetComponent<PlayerController>();
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            controller.isAttacking = true;
+        }
     }
 
     public void Attack()
