@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,6 +11,7 @@ public class PressKeyEnableElement : MonoBehaviour
     [SerializeField] PlayerController player;
     [SerializeField] string message;
     private bool inRange;
+    private bool opened;
     private TMP_Text text;
 
     private void Awake()
@@ -27,30 +29,55 @@ public class PressKeyEnableElement : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.E) && inRange)
         {
-            textGameObject.SetActive(false);
-            itemToShow.SetActive(true);
-            player.canMove = false;
+            if (!opened)
+            {
+                Open();
+            }
+            else
+            {
+                Close();
+            }
         }
+    }
+
+    private void Open()
+    {
+        textGameObject.SetActive(false);
+        itemToShow.SetActive(true);
+        player.canMove = false;
+        opened = true;
+
+        //Stop the player velocity 
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector3.zero;
+    }
+
+    public void Close()
+    {
+        textGameObject.SetActive(true);
+        itemToShow.SetActive(false);
+        player.canMove = true;
+        opened = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            inRange = true;
             text.SetText(message);
             textGameObject.SetActive(true);
-            inRange = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        // textGameObject condition added to avoid error when closing game
+        if (collision.gameObject.CompareTag("Player") && textGameObject)
         {
-            text.text = "";
             inRange = false;
+            text.SetText("");
             textGameObject.SetActive(false);
-            itemToShow.SetActive(false);
         }
     }
 }
