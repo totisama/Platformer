@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - DestroyableObject
+  - Collectable
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Projectile
   - Enemy
   - Player
-  - DestroyableObject
+  - DestroyableObjects
   - 
   - 
   - 

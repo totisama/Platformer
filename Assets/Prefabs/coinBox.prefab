@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 268647080893385237}
   - component: {fileID: 3940587854950637620}
   m_Layer: 10
-  m_Name: coinBox
+  m_Name: CoinBox
   m_TagString: DestroyableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,3 +166,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hits: 3
+  dropObjectsOnDestroy: 0
+  dropObject: {fileID: 0}
