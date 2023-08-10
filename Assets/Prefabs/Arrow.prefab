@@ -173,10 +173,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatDestroysBullet:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 1344
   destroyTime: 3
   bulletType: 0
   bulletDamage: 15
   normalBulletSpeed: 15
   physicsBulletSpeed: 15
   bulletGravity: 3
+  maxHeight: 15
