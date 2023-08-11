@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ItemCollectable : MonoBehaviour
 {
-    [SerializeField] private CpllectableType type;
+    [SerializeField] private CollectableType type;
 
     private Animator animator;
 
-    private enum CpllectableType
+    private enum CollectableType
     {
         coin
     }
