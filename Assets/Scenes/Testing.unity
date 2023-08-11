@@ -4430,6 +4430,17 @@ Transform:
   - {fileID: 42389709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &492314177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3044527722577825376, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
+  m_PrefabInstance: {fileID: 985634764522465455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &575571233
 GameObject:
   m_ObjectHideFlags: 0
@@ -4439,6 +4450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 575571235}
+  - component: {fileID: 575571236}
   m_Layer: 0
   m_Name: Game manager
   m_TagString: Untagged
@@ -4461,6 +4473,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &575571236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575571233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3707587ed4d7b4cb24a426880d371d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsAmount: {fileID: 492314177}
 --- !u!1 &937652384
 GameObject:
   m_ObjectHideFlags: 0
@@ -4726,10 +4751,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 412293776806424425, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2312430640428364817, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4818,9 +4839,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2714796839128121764, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 3044527722577825376, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
+      propertyPath: m_text
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
