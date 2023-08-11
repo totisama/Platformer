@@ -165,6 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac91772dfd6f4ee48a320fe59b9484ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hits: 3
-  dropObjectsOnDestroy: 0
-  dropObject: {fileID: 0}
+  hitsToDestroy: 3
+  dropObjectsOnDestroy: 1
+  dropObject: {fileID: 5502722581174371369, guid: 3761f914326365a42915cb4a8726c873, type: 3}
+  randomAmount: 1
+  maxAmount: 6
+  amount: 0
