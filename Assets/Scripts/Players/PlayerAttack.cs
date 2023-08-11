@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
+        if (Input.GetMouseButtonDown(0) && Time.time > nextFire && !controller.isClimbing)
         {
             nextFire = Time.time + fireRate;
             controller.isAttacking = true;

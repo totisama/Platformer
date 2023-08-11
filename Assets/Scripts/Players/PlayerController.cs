@@ -10,15 +10,24 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 14f;
+    [Header("Climb")]
+    [SerializeField] private float climbingSpeed = 4f;
+    [SerializeField] private float climbingHorizontalSpeed = 2f;
 
     [Header("Ground Check")]
     [SerializeField] private float extraHeight = 0.25f;
     [SerializeField] private LayerMask jumpableGround;
 
     private float horizontalMovement;
+    private float verticalMovement;
+    private float initialMoveSpeed;
     private bool jump;
     [HideInInspector]
     public bool isAttacking;
+    [HideInInspector]
+    public bool isClimbing;
+
+    private HashSet<GameObject> ladders = new HashSet<GameObject> ();
 
     Rigidbody2D rigidBody;
     Animator animator;
@@ -29,7 +38,8 @@ public class PlayerController : MonoBehaviour
         Run,
         Jump,
         Fall,
-        Attack
+        Attack,
+        Climbing
     };
 
     void Awake()
@@ -39,14 +49,30 @@ public class PlayerController : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
+    private void Start()
+    {
+        initialMoveSpeed = moveSpeed;
+    }
+
     void Update()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
+        verticalMovement = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !isAttacking)
         {
             jump = true;
+        }
+
+        if (ladders.Count > 0 && Mathf.Abs(verticalMovement) > 0f && IsGrounded() && !isAttacking)
+        {
+            isClimbing = true;
+            moveSpeed = climbingHorizontalSpeed;
+        }
+        else if (ladders.Count <= 0 || verticalMovement == 0f)
+        {
+            isClimbing = false;
+            moveSpeed = initialMoveSpeed;
         }
 
         UpdateAnimation();
@@ -65,6 +91,17 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+
+        if (isClimbing)
+        {
+            rigidBody.gravityScale = 0f;
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, verticalMovement * climbingSpeed);
+        }
+        else
+        {
+            rigidBody.gravityScale = 3f;
+        }
+        
     }
 
     private void MovePlayer()
@@ -119,7 +156,13 @@ public class PlayerController : MonoBehaviour
             currentAnimation = Animations.Attack;
         }
 
-        if(animator.GetInteger("currentAnimation") != (int) currentAnimation)
+        //Climbing conditions
+        if (isClimbing)
+        {
+            currentAnimation = Animations.Climbing;
+        }
+
+        if (animator.GetInteger("currentAnimation") != (int) currentAnimation)
         {
             animator.SetInteger("currentAnimation", (int) currentAnimation);
         }
@@ -139,6 +182,22 @@ public class PlayerController : MonoBehaviour
         else if (horizontalMovement > 0f && canMove)
         {
             transform.rotation = Quaternion.identity;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ladder"))
+        {
+            ladders.Add(collision.gameObject);   
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ladder"))
+        {
+            ladders.Remove(collision.gameObject);
         }
     }
 }

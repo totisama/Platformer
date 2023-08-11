@@ -200,11 +200,14 @@ MonoBehaviour:
   moveSpeed: 7
   canMove: 1
   jumpForce: 12
+  climbingSpeed: 4
+  climbingHorizontalSpeed: 3
   extraHeight: 0.1
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
   isAttacking: 0
+  isClimbing: 0
 --- !u!114 &7077949166019877510
 MonoBehaviour:
   m_ObjectHideFlags: 0
