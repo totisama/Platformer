@@ -21,6 +21,7 @@ public class ItemCollectable : MonoBehaviour
 
     private void CollectItem()
     {
+        GameManager.Instance.IncreaseCoins(1);
         animator.SetBool("collected", true);
     }
 
