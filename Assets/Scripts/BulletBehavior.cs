@@ -18,7 +18,7 @@ public class BulletBehavior : MonoBehaviour
     [SerializeField] private float bulletGravity = 3f;
     [SerializeField] private float maxHeight = 3f;
 
-    public float PhysicsBulletSpeed { get { return physicsBulletSpeed; } private set { maxHeight = value; } }
+    public float PhysicsBulletSpeed { get { return physicsBulletSpeed; } private set { physicsBulletSpeed = value; } }
     public float BulletGravity { get { return bulletGravity; } private set { bulletGravity = value; } }
     public float MaxHeight { get { return maxHeight; } private set { maxHeight = value; } }
 
@@ -57,8 +57,8 @@ public class BulletBehavior : MonoBehaviour
         }
         else if (bulletType == BulletType.physics)
         {
-            rb.velocity = transform.right * physicsBulletSpeed;
-            rb.gravityScale = bulletGravity;
+            rb.velocity = transform.right * PhysicsBulletSpeed;
+            rb.gravityScale = BulletGravity;
         }
     }
     
