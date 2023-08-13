@@ -17,8 +17,8 @@ public class SpiderEnemy : MonoBehaviour
     [SerializeField] private float timeToRecoverSpeed = 1f;
 
     [Header("Player")]
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private PlayerHealth playerHealth;
+    public Transform playerTransform;
+    public PlayerHealth playerHealth;
 
     private Vector2 idlePosition;
     private bool attacking = false;
