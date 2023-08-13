@@ -8,12 +8,15 @@ public class DestroyableObject : MonoBehaviour, IDamageable
     [Header("On Drop")]
     [SerializeField] private bool dropObjectsOnDestroy;
     [SerializeField] private GameObject dropObject;
+    [SerializeField] private bool physicsDrop;
     [Header("Random")]
     [SerializeField] private bool randomAmount;
     [Tooltip("Not included")]
     [SerializeField] private int maxAmount = 0;
     [Header("Controlled")]
     [SerializeField] private int amount = 0;
+    [Header("Player")]
+    [SerializeField] private GameObject playerGameObject;
 
     private Animator animator;
     private Collider2D col;
@@ -50,17 +53,32 @@ public class DestroyableObject : MonoBehaviour, IDamageable
             objectsAmount = Random.Range(0, maxAmount);
         }
 
-        for (int i = 0; i < objectsAmount; i++)
+        if (physicsDrop)
         {
-            float xImpulse = Random.Range(-3f, 4.0f);
-            float yImpulse = Random.Range(0f, 6.0f);
+            for (int i = 0; i < objectsAmount; i++)
+            {
+                float xImpulse = Random.Range(-3f, 4.0f);
+                float yImpulse = Random.Range(0f, 6.0f);
 
-            GameObject instance = Instantiate(dropObject, transform.position, Quaternion.identity);
-            Rigidbody2D rb = instance.GetComponent<Rigidbody2D>();
+                GameObject instance = Instantiate(dropObject, transform.position, Quaternion.identity);
+                Rigidbody2D rb = instance.GetComponent<Rigidbody2D>();
 
-            rb.gravityScale = 1f;
-            rb.AddForce(new Vector2(xImpulse, yImpulse), ForceMode2D.Impulse);
+                rb.gravityScale = 1f;
+                rb.AddForce(new Vector2(xImpulse, yImpulse), ForceMode2D.Impulse);
+            }
         }
+        else
+        {
+            GameObject instance = Instantiate(dropObject, transform.position, Quaternion.identity);
+            SpiderEnemy spider = instance.GetComponent<SpiderEnemy>();
+
+            if(spider)
+            {
+                spider.playerTransform = playerGameObject.GetComponent<Transform>();
+                spider.playerHealth = playerGameObject.GetComponent<PlayerHealth>();
+            }
+        }
+
     }
 
     private void DestroyObject()
