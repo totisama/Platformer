@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: dcea27f8885acb849b21f15db6cecd9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -116,7 +116,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.079954386, y: 0}
@@ -168,6 +168,8 @@ MonoBehaviour:
   hitsToDestroy: 3
   dropObjectsOnDestroy: 1
   dropObject: {fileID: 5502722581174371369, guid: 3761f914326365a42915cb4a8726c873, type: 3}
+  physicsDrop: 1
   randomAmount: 1
   maxAmount: 6
   amount: 0
+  playerGameObject: {fileID: 0}
