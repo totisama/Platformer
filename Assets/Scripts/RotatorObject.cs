@@ -11,7 +11,6 @@ public class RotatorObject : MonoBehaviour
 
     private float t = 0.0f;
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 rotation = new Vector3(0f, 0f, Mathf.Lerp(minimumAngle, maximumAngle, t));
@@ -30,11 +29,14 @@ public class RotatorObject : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        IDamageable iDamageable = collision.gameObject.GetComponent<IDamageable>();
-
-        if (iDamageable != null)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            iDamageable.TakeDamage(damage, transform.position);
+            IDamageable iDamageable = collision.gameObject.GetComponent<IDamageable>();
+
+            if (iDamageable != null)
+            {
+                iDamageable.TakeDamage(damage, transform.position);
+            }
         }
     }
 }
