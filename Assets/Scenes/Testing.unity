@@ -4855,9 +4855,41 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
+      propertyPath: hitColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
+      propertyPath: hitColor.b
+      value: 0.30196077
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
+      propertyPath: hitColor.g
+      value: 0.30196077
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
+      propertyPath: hitColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
+      propertyPath: timeToColor
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 2117923224}
+    - target: {fileID: 7732755239697860834, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732755239697860834, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732755239697860834, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

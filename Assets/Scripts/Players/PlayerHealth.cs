@@ -6,14 +6,20 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float timeToMove = 1f;
     [SerializeField] private Slider healthSlider;
+    [Header("On Hit")]
+    [SerializeField] private float timeToMove = 1f;
+    [SerializeField] private Color hitColor = new Color(1f, 0.30f, 0.30f);
+    [SerializeField] private float timeToColor = 0.2f;
+
     private float health;
+    private Color defaultColor = new Color(1f, 1f, 1f);
 
     private Animator animator;
     private PlayerController playerController;
     private TakeKnockBack takeKnockBack;
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     public float Health
     {
@@ -27,6 +33,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         playerController = GetComponent<PlayerController>();
         takeKnockBack = GetComponent<TakeKnockBack>();
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -47,6 +54,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
         else
         {
+            StartCoroutine(SwitchColor());
             StartCoroutine(ImmobilizePlayer());
         }
     }
@@ -63,5 +71,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         playerController.canMove = false;
         yield return new WaitForSeconds(timeToMove);
         playerController.canMove = true;
+    }
+
+    private IEnumerator SwitchColor()
+    {
+        sr.color = hitColor;
+        yield return new WaitForSeconds(timeToColor);
+        sr.color = defaultColor;
     }
 }

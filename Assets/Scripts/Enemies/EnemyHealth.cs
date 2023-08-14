@@ -10,14 +10,21 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [Header("Canvas")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Canvas canvas;
+    [Header("On Hit")]
+    [SerializeField] private Color hitColor = new Color(1f, 0.30f, 0.30f);
+    [SerializeField] private float timeToColor = 0.3f;
+
+    private Color defaultColor = new Color(1f, 1f, 1f);
 
     private Animator animator;
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -30,6 +37,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public void TakeDamage(float damage, Vector2 damageDirection)
     {
         AudioManager.Instance.PlaySFXSound("hit");
+        StartCoroutine(SwitchColor());
 
         health -= damage;
         healthSlider.value = health;
@@ -46,5 +54,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    private IEnumerator SwitchColor()
+    {
+        sr.color = hitColor;
+        yield return new WaitForSeconds(timeToColor);
+        sr.color = defaultColor;
     }
 }
