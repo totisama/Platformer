@@ -18,7 +18,6 @@ public class SpiderEnemy : MonoBehaviour
 
     [Header("Player")]
     public Transform playerTransform;
-    public PlayerHealth playerHealth;
 
     private Vector2 idlePosition;
     private bool attacking = false;
@@ -186,7 +185,13 @@ public class SpiderEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerHealth.TakeDamage(damage, transform.position);
+            IDamageable iDamageable = collision.gameObject.GetComponent<IDamageable>();
+
+            if (iDamageable != null)
+            {
+                //Damage enemy
+                iDamageable.TakeDamage(damage, transform.position);
+            }
         }
     }
 

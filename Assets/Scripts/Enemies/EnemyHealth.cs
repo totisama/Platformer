@@ -29,6 +29,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage, Vector2 damageDirection)
     {
+        AudioManager.Instance.PlaySFXSound("hit");
+
         health -= damage;
         healthSlider.value = health;
 

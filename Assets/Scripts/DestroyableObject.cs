@@ -75,7 +75,6 @@ public class DestroyableObject : MonoBehaviour, IDamageable
             if(spider)
             {
                 spider.playerTransform = playerGameObject.GetComponent<Transform>();
-                spider.playerHealth = playerGameObject.GetComponent<PlayerHealth>();
             }
         }
 
