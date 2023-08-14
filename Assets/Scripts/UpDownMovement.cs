@@ -7,6 +7,7 @@ public class UpDownMovement : MonoBehaviour
     [SerializeField] private int distance = 4;
     [SerializeField] private float velocity = 1f;
     [SerializeField] private GameObject objectToMove;
+    [SerializeField] private bool actionToMove;
 
     private float topLimit;
     private float bottomLimit;
@@ -19,8 +20,12 @@ public class UpDownMovement : MonoBehaviour
     
     void Update()
     {
-        Vector3 currentPosition = objectToMove.transform.position;
-        objectToMove.transform.position = new Vector3(currentPosition.x, Mathf.Lerp(topLimit, bottomLimit, t), currentPosition.z);
+        if (actionToMove)
+        {
+            return;
+        }
+
+        moveObject();
 
         t += velocity * Time.deltaTime;
 
@@ -31,5 +36,11 @@ public class UpDownMovement : MonoBehaviour
             bottomLimit = temp;
             t = 0.0f;
         }
+    }
+
+    public void moveObject()
+    {
+        Vector3 currentPosition = objectToMove.transform.position;
+        objectToMove.transform.position = new Vector3(currentPosition.x, Mathf.Lerp(topLimit, bottomLimit, t), currentPosition.z);
     }
 }
