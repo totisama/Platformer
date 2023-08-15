@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press "E" to interact
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 17095a35143dfc641892e10720150fcc, type: 2}
+  m_sharedMaterial: {fileID: 1806598174695285308, guid: 17095a35143dfc641892e10720150fcc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.1
+  m_fontSize: 59
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0.1
-  velocity: 1.5
+  velocity: 1.8
   objectToMove: {fileID: 3000188757215574233}
   actionToMove: 0
 --- !u!1 &7878992595347144122
@@ -496,5 +496,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToShow: {fileID: 0}
-  textCanvas: {fileID: 0}
   player: {fileID: 0}
