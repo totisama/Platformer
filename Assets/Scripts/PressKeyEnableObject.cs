@@ -4,25 +4,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PressKeyEnableElement : MonoBehaviour
+public class PressKeyEnableObject: MonoBehaviour
 {
     [SerializeField] GameObject itemToShow;
-    [SerializeField] GameObject textGameObject;
     [SerializeField] PlayerController player;
-    [SerializeField] string message;
     private bool inRange;
     private bool opened;
-    private TMP_Text text;
-
-    private void Awake()
-    {
-        text = textGameObject.GetComponent<TMP_Text>();
-    }
 
     private void Start()
     {
         itemToShow.SetActive(false);
-        textGameObject.SetActive(false);
     }
 
     private void Update()
@@ -42,7 +33,6 @@ public class PressKeyEnableElement : MonoBehaviour
 
     private void Open()
     {
-        textGameObject.SetActive(false);
         itemToShow.SetActive(true);
         player.canMove = false;
         opened = true;
@@ -54,7 +44,6 @@ public class PressKeyEnableElement : MonoBehaviour
 
     public void Close()
     {
-        textGameObject.SetActive(true);
         itemToShow.SetActive(false);
         player.canMove = true;
         opened = false;
@@ -65,19 +54,14 @@ public class PressKeyEnableElement : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = true;
-            text.SetText(message);
-            textGameObject.SetActive(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // textGameObject condition added to avoid error when closing game
-        if (collision.gameObject.CompareTag("Player") && textGameObject)
+        if (collision.gameObject.CompareTag("Player"))
         {
             inRange = false;
-            text.SetText("");
-            textGameObject.SetActive(false);
         }
     }
 }
