@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpDownMovement : MonoBehaviour
 {
-    [SerializeField] private int distance = 4;
+    [SerializeField] private float distance = 4f;
     [SerializeField] private float velocity = 1f;
     [SerializeField] private GameObject objectToMove;
     [SerializeField] private bool actionToMove;
