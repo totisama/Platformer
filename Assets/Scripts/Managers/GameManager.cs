@@ -8,8 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] TMP_Text coinsAmount;
+    [SerializeField] TMP_Text inventoryCoinsAmount;
  
-    private int coins;
+    private int coins = 30;
 
     public int Coins { get { return coins; } private set { coins = value; } }
 
@@ -28,11 +29,22 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         coinsAmount.SetText(Coins.ToString());
+        inventoryCoinsAmount.SetText(Coins.ToString());
     }
 
     public void IncreaseCoins(int amount)
     {
         Coins += amount;
+
         coinsAmount.SetText(Coins.ToString());
+        inventoryCoinsAmount.SetText(Coins.ToString());
+    }
+    
+    public void DecreaseCoins(int amount)
+    {
+        Coins -= amount;
+
+        coinsAmount.SetText(Coins.ToString());
+        inventoryCoinsAmount.SetText(Coins.ToString());
     }
 }

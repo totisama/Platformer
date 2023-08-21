@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Item;
 
 public class InventoryItem : MonoBehaviour
 {
@@ -17,5 +18,10 @@ public class InventoryItem : MonoBehaviour
     {
         item = newItem;
         image.sprite = newItem.image;
+    }
+
+    public ActionType GetItemType()
+    {
+        return item.type;
     }
 }

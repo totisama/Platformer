@@ -9,11 +9,12 @@ public class Item : ScriptableObject
 {
     public Sprite image;
     public ActionType type;
+    public int cost;
 
     public enum ActionType
     {
         health,
-        speed,
-        attack
+        attackDamage,
+        attackSpeed
     }
 }

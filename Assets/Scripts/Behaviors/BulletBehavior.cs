@@ -84,4 +84,9 @@ public class BulletBehavior : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void IncreaseDamage(int extraDamage)
+    {
+        bulletDamage += extraDamage;
+    }
 }

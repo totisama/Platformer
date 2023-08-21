@@ -1322,7 +1322,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8417803706431806672}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: BuyItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 53241a1f80a07924b96f11554ff8f41c, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Item, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2461189674709646956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,8 +1369,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -24.1, y: 3.4}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -53.6, y: 3.6609}
+  m_SizeDelta: {x: 5.7406, y: -0.5219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3127898570112401970
 CanvasRenderer:
@@ -1422,7 +1434,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1522,7 +1534,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Extra speed
+  m_text: Extra attack damage
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17095a35143dfc641892e10720150fcc, type: 2}
   m_sharedMaterial: {fileID: 1806598174695285308, guid: 17095a35143dfc641892e10720150fcc, type: 2}
@@ -1922,7 +1934,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6486882143475369096}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: BuyItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: f134ce95187eeea44986f9c4d91dfdf7, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Item, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3512684518258061194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,7 +2069,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7675259588151658381}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: BuyItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 8bb390a613836714095ebfd93a05d405, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Item, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3789757232318511025
 GameObject:
   m_ObjectHideFlags: 0
@@ -2858,7 +2894,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_StartCorner: 0
+  m_StartCorner: 2
   m_StartAxis: 0
   m_CellSize: {x: 45, y: 45}
   m_Spacing: {x: 5, y: 5}

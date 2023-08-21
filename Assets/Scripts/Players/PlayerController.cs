@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Item;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,6 +34,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigidBody;
     Animator animator;
     BoxCollider2D coll;
+    PlayerAttack playerAttack;
+    PlayerHealth playerHealth;
 
     private enum Animations {
         Idle,
@@ -47,6 +51,8 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
+        playerAttack = GetComponent<PlayerAttack>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void Start()
@@ -73,6 +79,11 @@ public class PlayerController : MonoBehaviour
         {
             isClimbing = false;
             moveSpeed = initialMoveSpeed;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ApplyPotion();
         }
 
         UpdateAnimation();
@@ -183,6 +194,32 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.identity;
         }
+    }
+
+    private void ApplyPotion()
+    {
+        InventoryItem item = InventoryManager.Instance.GetActiveSlotItem();
+
+        if (!item)
+        {
+            Debug.Log("No item to use");
+            return;
+        }
+
+        if (item.GetItemType() == ActionType.health)
+        {
+
+        }
+        else if (item.GetItemType() == ActionType.attackDamage)
+        {
+            playerAttack.UsePotion(ActionType.attackDamage);
+        }
+        else if (item.GetItemType() == ActionType.attackSpeed)
+        {
+            playerAttack.UsePotion(ActionType.attackSpeed);
+        }
+
+        Destroy(item.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
