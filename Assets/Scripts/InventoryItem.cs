@@ -24,4 +24,14 @@ public class InventoryItem : MonoBehaviour
     {
         return item.type;
     }
+    
+    public float GetItemDuration()
+    {
+        return item.duration;
+    }
+    
+    public int GetItemExtraHealth()
+    {
+        return item.extraHealth;
+    }
 }

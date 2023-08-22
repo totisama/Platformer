@@ -108,4 +108,14 @@ public class InventoryManager : MonoBehaviour
     {
         return slots[activeSlot].GetComponentInChildren<InventoryItem>();
     }
+
+    //public void UseActiveSlotItem()
+    //{
+    //    Slider slider = slots[activeSlot].GetComponent<Slider>();
+
+    //    if (!slider)
+    //    {
+    //        return;
+    //    }
+    //}
 }

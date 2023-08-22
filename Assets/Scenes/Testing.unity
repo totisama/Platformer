@@ -4486,10 +4486,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1044856743}
-    - target: {fileID: 3273490507281770339, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuyItem
-      objectReference: {fileID: 0}
     - target: {fileID: 4433923602859780940, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4518,18 +4514,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1044856743}
-    - target: {fileID: 4739441248037227037, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuyItem
+    - target: {fileID: 6042781994196692282, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042781994196692282, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8384595283562036519, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1044856743}
-    - target: {fileID: 8384595283562036519, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuyItem
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4856,6 +4852,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718d9dc582b12e34eb7359ae23259082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1126773100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6931983812808340937, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
+  m_PrefabInstance: {fileID: 231768324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1151046045
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4987,6 +4994,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 155323147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1333529756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6034353971611062352, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
+  m_PrefabInstance: {fileID: 231768324}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1353306124 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3044527722577825376, guid: dbf997ac7d3c0504d8c45c6f5107bd20, type: 3}
@@ -5194,11 +5206,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 130119921748080288, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.08
+      value: 3.75
       objectReference: {fileID: 0}
     - target: {fileID: 130119921748080288, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 130119921748080288, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5261,6 +5273,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
+      propertyPath: extraHealth
+      value: 
+      objectReference: {fileID: 1333529756}
+    - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
       propertyPath: timeToColor
       value: 0.25
       objectReference: {fileID: 0}
@@ -5268,6 +5284,10 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 451305048}
+    - target: {fileID: 7077949166019877510, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
+      propertyPath: extraHealthSlider
+      value: 
+      objectReference: {fileID: 1126773100}
     - target: {fileID: 7732755239697860834, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -5372,11 +5392,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8588054892339689678, guid: 69ee5938b7885294e8452646d6b717c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.61
+      value: 1.8988752
       objectReference: {fileID: 0}
     - target: {fileID: 8588054892339689678, guid: 69ee5938b7885294e8452646d6b717c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.08
+      value: -0.11800003
       objectReference: {fileID: 0}
     - target: {fileID: 8588054892339689678, guid: 69ee5938b7885294e8452646d6b717c4, type: 3}
       propertyPath: m_LocalPosition.z

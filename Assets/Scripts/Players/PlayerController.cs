@@ -208,18 +208,18 @@ public class PlayerController : MonoBehaviour
 
         if (item.GetItemType() == ActionType.health)
         {
+            bool used = playerHealth.UseExtraHealthPotion(item.GetItemExtraHealth());
 
+            if (used)
+            {
+                Destroy(item.gameObject);
+            }
         }
-        else if (item.GetItemType() == ActionType.attackDamage)
+        else
         {
-            playerAttack.UsePotion(ActionType.attackDamage);
+            playerAttack.UsePotion(item.GetItemType(), item.GetItemDuration());
+            Destroy(item.gameObject);
         }
-        else if (item.GetItemType() == ActionType.attackSpeed)
-        {
-            playerAttack.UsePotion(ActionType.attackSpeed);
-        }
-
-        Destroy(item.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

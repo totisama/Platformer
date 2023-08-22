@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform arrowSpawnPoint;
     [SerializeField] private int extraDamageValue;
     public float fireRate = 1f;
+    private float initialfireRate = 1f;
 
     private PlayerController controller;
     private float nextFire;
@@ -17,6 +18,11 @@ public class PlayerAttack : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<PlayerController>();
+    }
+
+    private void Start()
+    {
+        initialfireRate = fireRate;
     }
 
     void Update()
@@ -62,6 +68,6 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator IncreaseAttackSpeed(float timeToConsume)
     {
         yield return new WaitForSeconds(timeToConsume);
-        extraDamage = 0;
+        fireRate = initialfireRate;
     }
 }

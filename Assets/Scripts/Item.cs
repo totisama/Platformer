@@ -10,6 +10,8 @@ public class Item : ScriptableObject
     public Sprite image;
     public ActionType type;
     public int cost;
+    public float duration;
+    public int extraHealth;
 
     public enum ActionType
     {

@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text coinsAmount;
     [SerializeField] TMP_Text inventoryCoinsAmount;
  
-    private int coins = 30;
+    private int coins;
 
     public int Coins { get { return coins; } private set { coins = value; } }
 
