@@ -19,11 +19,8 @@ public class SpearGoblinEnemy : MonoBehaviour
     [SerializeField] private Vector3 rotation;
     [SerializeField] private float timeToAttack = 2f;
 
-    [Header("Player")]
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private PlayerHealth playerHealth;
-    
     private bool canAttack = true;
+    private Transform playerTransform;
 
     private WaypointsFollower waypointsFollower;
     private Animator animator;
@@ -47,6 +44,7 @@ public class SpearGoblinEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
         waypointsFollower = GetComponent<WaypointsFollower>();
         bulletBehavior = spear.GetComponent<BulletBehavior>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     private void Start()
@@ -101,7 +99,13 @@ public class SpearGoblinEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerHealth.TakeDamage(collisionDamage, transform.position);
+            IDamageable iDamageable = collision.gameObject.GetComponent<IDamageable>();
+
+            if (iDamageable != null)
+            {
+                //Damage enemy
+                iDamageable.TakeDamage(collisionDamage, transform.position);
+            }
         }
     }
 
