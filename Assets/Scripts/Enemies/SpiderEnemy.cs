@@ -16,13 +16,11 @@ public class SpiderEnemy : MonoBehaviour
     [SerializeField] private float attackDistance = 2f;
     [SerializeField] private float timeToRecoverSpeed = 1f;
 
-    [Header("Player")]
-    public Transform playerTransform;
-
     private Vector2 idlePosition;
     private bool attacking = false;
     private float initialSpeed;
     private EnemyStates enemyState;
+    private Transform playerTransform;
 
     private Animator animator;
     private Rigidbody2D rb;
@@ -48,6 +46,7 @@ public class SpiderEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         enemyHealth = GetComponent<EnemyHealth>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     private void Start()

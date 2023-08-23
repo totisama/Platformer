@@ -15,8 +15,6 @@ public class DestroyableObject : MonoBehaviour, IDamageable
     [SerializeField] private int maxAmount = 0;
     [Header("Controlled")]
     [SerializeField] private int amount = 0;
-    [Header("Player")]
-    [SerializeField] private GameObject playerGameObject;
 
     private Animator animator;
     private Collider2D col;
@@ -71,11 +69,6 @@ public class DestroyableObject : MonoBehaviour, IDamageable
         {
             GameObject instance = Instantiate(dropObject, transform.position, Quaternion.identity);
             SpiderEnemy spider = instance.GetComponent<SpiderEnemy>();
-
-            if(spider)
-            {
-                spider.playerTransform = playerGameObject.GetComponent<Transform>();
-            }
         }
 
     }
