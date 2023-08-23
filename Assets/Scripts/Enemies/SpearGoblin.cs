@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpearGoblinEnemy : MonoBehaviour
+public class SpearGoblin: MonoBehaviour
 {
     [Header("General")]
     [SerializeField] private float collisionDamage = 10f;
