@@ -188,14 +188,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionDamage: 10
-  rectTransform: {fileID: 7090049616079093840}
   attackDistance: 15
   spear: {fileID: 7478659675831776453, guid: 03f31b427c461934d9cf6c3ce2ba3c12, type: 3}
   spearSpawnPoint: {fileID: 1539918057562862370}
   rotation: {x: 0, y: 0, z: 30}
   timeToAttack: 2
-  playerTransform: {fileID: 0}
-  playerHealth: {fileID: 0}
 --- !u!114 &1112376048084780071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +208,8 @@ MonoBehaviour:
   health: 100
   healthSlider: {fileID: 6602694609190045570}
   canvas: {fileID: 8844826738683446959}
+  hitColor: {r: 1, g: 0.3, b: 0.3, a: 1}
+  timeToColor: 0.3
 --- !u!114 &3452673729505737812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +227,7 @@ MonoBehaviour:
   - {fileID: 0}
   moveSpeed: 5
   canMove: 1
+  rectTransform: {fileID: 2823770748695632085}
 --- !u!1 &4056160550083788035
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +384,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce9018e69258c634ab857903eb835119, type: 3}
+--- !u!224 &2823770748695632085 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 273945568577886988, guid: ce9018e69258c634ab857903eb835119, type: 3}
+  m_PrefabInstance: {fileID: 2665370684255159257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5043660600432717787 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6990679622231272450, guid: ce9018e69258c634ab857903eb835119, type: 3}
@@ -400,11 +405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7090049616079093840 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5087279826097587081, guid: ce9018e69258c634ab857903eb835119, type: 3}
-  m_PrefabInstance: {fileID: 2665370684255159257}
-  m_PrefabAsset: {fileID: 0}
 --- !u!223 &8844826738683446959 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 6792113841269261686, guid: ce9018e69258c634ab857903eb835119, type: 3}

@@ -7,9 +7,6 @@ public class SpearGoblin: MonoBehaviour
     [Header("General")]
     [SerializeField] private float collisionDamage = 10f;
 
-    [Header("Canvas")]
-    [SerializeField] private RectTransform rectTransform;
-
     [Header("Behavior")]
     [SerializeField] private float attackDistance = 15f;
 
@@ -71,7 +68,7 @@ public class SpearGoblin: MonoBehaviour
         }
     }
 
-    private void Atack()
+    private void Attack()
     {
         float angle = GetShotAngle(transform.position, playerTransform.position);
 
