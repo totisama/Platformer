@@ -4326,7 +4326,7 @@ Transform:
   m_GameObject: {fileID: 155323146}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.1, y: -1.19, z: -0.07106446}
+  m_LocalPosition: {x: -19.1, y: -0.84, z: -0.07106446}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5129,7 +5129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 130119921748080288, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15
+      value: -22.87
       objectReference: {fileID: 0}
     - target: {fileID: 130119921748080288, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5353,6 +5353,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8262076021167577801, guid: 18666f86baff4634a80e277817a4897b, type: 3}
+      propertyPath: teleportPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1200987818}
+    - target: {fileID: 8262076021167577801, guid: 18666f86baff4634a80e277817a4897b, type: 3}
+      propertyPath: teleportPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1203344659}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

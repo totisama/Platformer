@@ -191,8 +191,6 @@ MonoBehaviour:
   seekDistance: 10
   attackDistance: 2
   timeToRecoverSpeed: 1
-  playerTransform: {fileID: 0}
-  playerHealth: {fileID: 0}
 --- !u!114 &5998087256432617131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,9 +203,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd11a1861826d5a469f6bd681e19ee1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 30
   healthSlider: {fileID: 6176190249922743321}
   canvas: {fileID: 8406079214294535476}
+  hitColor: {r: 1, g: 0.3, b: 0.3, a: 1}
+  timeToColor: 0.3
 --- !u!1001 &3092296255327193154
 PrefabInstance:
   m_ObjectHideFlags: 0

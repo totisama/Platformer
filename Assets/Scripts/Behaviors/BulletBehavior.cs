@@ -89,4 +89,9 @@ public class BulletBehavior : MonoBehaviour
     {
         bulletDamage += extraDamage;
     }
+    
+    public void SetDamage(int damage)
+    {
+        bulletDamage = damage;
+    }
 }
