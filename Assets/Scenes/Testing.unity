@@ -4332,6 +4332,7 @@ Transform:
   m_Children:
   - {fileID: 1200987819}
   - {fileID: 1203344660}
+  - {fileID: 1795708056}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &231768324
@@ -5108,6 +5109,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b2ffbdf7fd6c94881470d3c102afb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1795708055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1795708056}
+  m_Layer: 8
+  m_Name: way point 2 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1795708056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795708055}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.13, y: 5.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 155323147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1835996361 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2422247275344107205, guid: 2123cb3949903a944afe5edffe84f20b, type: 3}
@@ -5301,6 +5333,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1997782822594206725, guid: 18666f86baff4634a80e277817a4897b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997782822594206725, guid: 18666f86baff4634a80e277817a4897b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4336992607624143093, guid: 18666f86baff4634a80e277817a4897b, type: 3}
       propertyPath: m_Name
       value: Skeleton Mage
@@ -5346,6 +5386,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8262076021167577801, guid: 18666f86baff4634a80e277817a4897b, type: 3}
+      propertyPath: moveSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262076021167577801, guid: 18666f86baff4634a80e277817a4897b, type: 3}
+      propertyPath: timeToTeleport
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262076021167577801, guid: 18666f86baff4634a80e277817a4897b, type: 3}
+      propertyPath: distanceToAwake
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262076021167577801, guid: 18666f86baff4634a80e277817a4897b, type: 3}
+      propertyPath: fireballAttackCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262076021167577801, guid: 18666f86baff4634a80e277817a4897b, type: 3}
+      propertyPath: teleportPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262076021167577801, guid: 18666f86baff4634a80e277817a4897b, type: 3}
       propertyPath: teleportPoints.Array.data[0]
       value: 
       objectReference: {fileID: 1200987818}
@@ -5353,6 +5413,10 @@ PrefabInstance:
       propertyPath: teleportPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1203344659}
+    - target: {fileID: 8262076021167577801, guid: 18666f86baff4634a80e277817a4897b, type: 3}
+      propertyPath: teleportPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1795708055}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
