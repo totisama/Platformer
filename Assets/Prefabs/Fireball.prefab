@@ -196,10 +196,10 @@ MonoBehaviour:
   whatDestroysBullet:
     serializedVersion: 2
     m_Bits: 576
-  destroyTime: 3
+  destroyTime: 2
   bulletType: 0
   bulletDamage: 15
-  normalBulletSpeed: 15
+  normalBulletSpeed: 20
   physicsBulletSpeed: 15
   bulletGravity: 3
   maxHeight: 3

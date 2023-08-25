@@ -5301,14 +5301,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1997782822594206725, guid: 18666f86baff4634a80e277817a4897b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1997782822594206725, guid: 18666f86baff4634a80e277817a4897b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4336992607624143093, guid: 18666f86baff4634a80e277817a4897b, type: 3}
       propertyPath: m_Name
       value: Skeleton Mage

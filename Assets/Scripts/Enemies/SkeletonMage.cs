@@ -34,7 +34,6 @@ public class SkeletonMage : MonoBehaviour
     private EnemyStates enemyState;
 
     private Animator animator;
-    private BulletBehavior bulletBehavior;
     private Rigidbody2D rb;
 
     private enum Animations
@@ -58,7 +57,6 @@ public class SkeletonMage : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-        bulletBehavior = fireball.GetComponent<BulletBehavior>();
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
@@ -81,6 +79,13 @@ public class SkeletonMage : MonoBehaviour
         if (distanceToPlayer > distanceToAwake)
         {
             animator.SetInteger("currentAnimation", (int)Animations.Idle);
+            nextTeleport = Time.time + timeToTeleport;
+            nextFireballAttack = Time.time + fireballAttackCooldown;
+            if (rb.velocity.x > 0f)
+            {
+                ChosePointToTeleport();
+            }
+
             return;
         }
 
@@ -147,9 +152,15 @@ public class SkeletonMage : MonoBehaviour
         ChosePointToTeleport();
         StartCoroutine(EnableMovement());
     }
+
     private void ThrowFireball()
     {
-        GameObject fireballGO = Instantiate(fireball, fireballSpawnPoint.position, Quaternion.identity);
+        Vector3 target = playerTransform.position;
+
+        FlipScale(target);  
+        float angle = Mathf.Atan2(target.y - transform.position.y, target.x - transform.position.x) * Mathf.Rad2Deg;
+
+        GameObject fireballGO = Instantiate(fireball, fireballSpawnPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
 
         fireballGO.GetComponent<BulletBehavior>().SetDamage(fireballDamage);
     }
@@ -184,7 +195,6 @@ public class SkeletonMage : MonoBehaviour
         nextTeleport = Time.time + timeToTeleport;
         animator.SetInteger("currentAnimation", (int)Animations.Idle);
         teleporting = false;
-        StartCoroutine(EnableMovement());
     }
 
     private void ChangeCurrentState(EnemyStates newState)
